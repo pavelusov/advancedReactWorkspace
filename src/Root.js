@@ -8,10 +8,10 @@ import store from './redux/configure-store';
  * @param props - React props
  * @returns {Provider} - Provider wrapper
  */
-export default function Root(props) {
+export default function Root({children, initialState = {}}) {
   return (
-    <Provider store={store}>
-      {props.children}
+    <Provider store={store({initialState})}>
+      {children}
     </Provider>
   )
 }

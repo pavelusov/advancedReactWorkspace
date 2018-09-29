@@ -11,7 +11,7 @@ class App extends Component {
       <div>
         <h1>Приложение "Комментарии"</h1>
         <CommentBox />
-        <CommentList/>
+        <CommentList />
       </div>
     );
   }
