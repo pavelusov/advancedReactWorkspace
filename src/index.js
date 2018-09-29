@@ -1,11 +1,16 @@
-// Точка входа нашего приложения
+/* Точка входа нашего приложения */
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+// Provider wrapper of redux store
+import Root from './Root';
 
 // "App" component
 import App from 'components/App';
 
 ReactDOM.render(
-  <App/>,
+  <Root>
+    <App />
+  </Root>,
   document.getElementById('root')
 );

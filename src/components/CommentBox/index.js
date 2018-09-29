@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-export default class CommentBox extends Component {
+import { saveComment } from '../../redux/comments/comments-actions';
+
+class CommentBox extends Component {
   state = {
     comment: ''
   };
@@ -12,7 +16,8 @@ export default class CommentBox extends Component {
 
   onSubmitForm = e => {
     e.preventDefault();
-    this.setState({ comment: '' })
+    this.props.saveComment(this.state.comment);
+    this.setState({ comment: '' });
   };
 
   render() {
@@ -31,9 +36,17 @@ export default class CommentBox extends Component {
         <div>
           <button
             data-test="component-submit-button"
-          >Оставить</button>
+          >Оставить
+          </button>
         </div>
       </form>
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    saveComment: bindActionCreators(saveComment, dispatch)
+  }
+};
+export default connect(null, mapDispatchToProps)(CommentBox);

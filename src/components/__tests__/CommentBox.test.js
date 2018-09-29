@@ -1,12 +1,16 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
+import Root from 'Root';
 import CommentBox from 'components/CommentBox';
 
 let wrapper;
 
 beforeEach(() => {
-  wrapper = mount(<CommentBox/>);
+  wrapper = mount(
+    <Root>
+      <CommentBox/>
+    </Root>);
 });
 
 afterEach(() => {
@@ -22,20 +26,17 @@ describe('пользователь может ввести данные в те�
   const value = 'Новый комментарий';
   const textArea = '[data-test="component-text-area"]';
 
-  beforeEach(()=>{
+  beforeEach(() => {
     wrapper.find(textArea).simulate('change', { target: { value } });
     wrapper.update();
   });
 
-  it('состояние компонента обновленно после ввода комментария', ()=>{
-    expect(wrapper.state().comment).toEqual(value);
-  });
 
-  it('коментарий написан и отображается в текстовом поле', ()=>{
+  it('коментарий написан и отображается в текстовом поле', () => {
     expect(wrapper.find(textArea).prop('value')).toEqual(value);
   });
 
-  it('После отправки формы текстовое поле очищается', ()=>{
+  it('После отправки формы текстовое поле очищается', () => {
     wrapper.simulate('submit');
     wrapper.update();
     expect(wrapper.find(textArea).prop('value')).toEqual('')

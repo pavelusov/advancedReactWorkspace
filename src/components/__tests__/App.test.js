@@ -1,14 +1,19 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
+import Root from 'Root';
 import App from 'components/App';
 import CommentBox from 'components/CommentBox';
 import CommentList from 'components/CommentList';
 
 let wrapper;
 
-beforeEach(()=>{
-  wrapper = shallow(<App />);
+beforeEach(() => {
+  wrapper = mount(
+    <Root>
+      <App/>
+    </Root>
+  );
 });
 
 it('показано поле для комментария', () => {
