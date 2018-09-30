@@ -25,6 +25,7 @@ it('показаны текстовая область и кнопка отпр�
 describe('пользователь может ввести данные в текстовую область формы', () => {
   const value = 'Новый комментарий';
   const textArea = '[data-test="component-text-area"]';
+  const form = '[data-test="component-form"]';
 
   beforeEach(() => {
     wrapper.find(textArea).simulate('change', { target: { value } });
@@ -37,7 +38,8 @@ describe('пользователь может ввести данные в те�
   });
 
   it('После отправки формы текстовое поле очищается', () => {
-    wrapper.simulate('submit');
+    wrapper.find(form).simulate('submit');
+    // wrapper.find('[data-test="component-submit-button"]').simulate('submit');
     wrapper.update();
     expect(wrapper.find(textArea).prop('value')).toEqual('')
   });

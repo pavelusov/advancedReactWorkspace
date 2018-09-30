@@ -23,7 +23,10 @@ class CommentBox extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.onSubmitForm}>
+        <form
+          data-test='component-form'
+          onSubmit={this.onSubmitForm}
+        >
           <h2>Оставить комментарий</h2>
           <textarea
             data-test="component-text-area"
