@@ -2,6 +2,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+// react router
+import { BrowserRouter, Route } from 'react-router-dom';
+
 // Provider wrapper of redux store
 import Root from './Root';
 
@@ -10,7 +13,12 @@ import App from 'components/App';
 
 ReactDOM.render(
   <Root>
-    <App />
+    <BrowserRouter>
+      <Route
+        path='/'
+        component={App}
+      />
+    </BrowserRouter>
   </Root>,
   document.getElementById('root')
 );
