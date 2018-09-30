@@ -7,7 +7,9 @@ class CommentList extends Component {
       <ul>
         {
           this.props.comments.map((comment, i) => (
-            <li key={i}>{comment}</li>
+            <li
+              data-test="comment"
+              key={i}>{comment}</li>
           ))
         }
       </ul>
@@ -16,7 +18,9 @@ class CommentList extends Component {
 
   render() {
     return (
-      <div>
+      <div
+        data-test="component-comment-list"
+      >
         {this.renderComments()}
       </div>
     )
