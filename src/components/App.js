@@ -1,5 +1,6 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
 
 // Application components
 import CommentBox from 'components/CommentBox';
@@ -10,8 +11,8 @@ class App extends Component {
     return (
       <div>
         <h1>Приложение "Комментарии"</h1>
-        <CommentBox />
-        <CommentList />
+        <Route path='/post' component={CommentBox} />
+        <Route path='/' exact component={CommentList} />
       </div>
     );
   }

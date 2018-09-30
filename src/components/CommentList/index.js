@@ -21,6 +21,7 @@ class CommentList extends Component {
       <div
         data-test="component-comment-list"
       >
+        <h2>Список коментариев</h2>
         {this.renderComments()}
       </div>
     )
