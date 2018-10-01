@@ -9,6 +9,21 @@ class CommentBox extends Component {
     comment: ''
   };
 
+  componentDidMount() {
+    this.checkAuth();
+  }
+
+  componentDidUpdate(prevProps) {
+    this.checkAuth();
+  }
+
+  checkAuth = () => {
+    if(!this.props.auth) {
+      console.log('вы не авторизованы');
+      this.props.history.push('/')
+    }
+  };
+
   onChangeTextArea = e => {
     const comment = e.target.value;
     this.setState({ comment })
@@ -54,10 +69,16 @@ class CommentBox extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth
+  }
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     saveComment: bindActionCreators(saveComment, dispatch),
     fetchComments: bindActionCreators(fetchComments, dispatch)
   }
 };
-export default connect(null, mapDispatchToProps)(CommentBox);
+export default connect(mapStateToProps, mapDispatchToProps)(CommentBox);
