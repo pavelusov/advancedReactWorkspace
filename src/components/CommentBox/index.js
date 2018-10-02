@@ -3,25 +3,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { saveComment, fetchComments } from '../../redux/comments/comments-actions';
+import requireAuth from '../require-auth';
 
 class CommentBox extends Component {
   state = {
     comment: ''
-  };
-
-  componentDidMount() {
-    this.checkAuth();
-  }
-
-  componentDidUpdate(prevProps) {
-    this.checkAuth();
-  }
-
-  checkAuth = () => {
-    if(!this.props.auth) {
-      console.log('вы не авторизованы');
-      this.props.history.push('/')
-    }
   };
 
   onChangeTextArea = e => {
@@ -70,9 +56,7 @@ class CommentBox extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    auth: state.auth
-  }
+  return {};
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -81,4 +65,4 @@ const mapDispatchToProps = (dispatch) => {
     fetchComments: bindActionCreators(fetchComments, dispatch)
   }
 };
-export default connect(mapStateToProps, mapDispatchToProps)(CommentBox);
+export default connect(mapStateToProps, mapDispatchToProps)(requireAuth(CommentBox));
